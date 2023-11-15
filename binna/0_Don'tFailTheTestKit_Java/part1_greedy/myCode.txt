@@ -1,0 +1,31 @@
+import java.util.*;
+class Solution {
+    public int solution(int n, int[] stations, int w) {
+        int answer = 0;
+        List<Integer> list = new ArrayList<>();
+
+        int standard = 1;
+        double scope = w * 2 + 1;
+        for (int station : stations) {
+            int frontNum = station - w;
+            int backNum = station + w;
+            
+            int num = frontNum - standard;
+            answer += Math.ceil((double) num / scope);
+            
+            standard = backNum + 1;
+        }
+        
+        if (standard <= n) {
+            int num = n - standard + 1;
+            answer += Math.ceil((double) num / scope);
+        }
+        
+        // for (int num : list) {
+        //     double scope = w * 2 + 1;
+        //     answer += Math.ceil((double) num / scope);
+        // }
+
+        return answer;
+    }
+}
