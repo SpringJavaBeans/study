@@ -1,0 +1,36 @@
+** 탐욕법, 욕심쟁이 알고리즘, 그리디(Greedy) 알고리즘
+	: 전체적인 조건을 보는게 아니라 현재의 상태만 보고 욕심쟁이 처럼 당장의 해결방법을 적용하는 법
+
+** 자바에서는 객체타입과 원시타입 중에 원시타입이 훨씬 빠름
+	즉, 객체타입을 사용하는데 오버헤드에는 걸리지는 않지만,
+	     혹시나 더 빠르게 작업해야할 일이 있다면 원시타입을 사용하는 것이 좋다
+
+** 효율성 테스트를 위해서 늘 마음에 새겨야하는 부분
+	1. 루프부분 체크(혹시 제거 가능한지)
+	2. 적절한 데이터 구조 사용
+	3. 불필요한 오브젝트 제거
+
+** 강사님 풀이법
+//import java.util.*;
+class Solution {
+    public int solution(int n, int[] stations, int w) {
+        int answer = 0;
+//        Queue<Integer> sq = new LinkedList<>();
+//        for (int s : stations) sq.offer(s);
+        int si = 0;
+        int position = 1;
+
+        while (position <= n) {
+            //if (!sq.isEmpty() && sq.peek() - w <= position) {
+            if (si < stations.length && stations[si] - w <= position) {
+                position = stations[si] + w + 1;
+                si += 1;
+            } else {
+                answer += 1;
+                position += w * 2 + 1;
+            }
+        }
+
+        return answer;
+    }
+}

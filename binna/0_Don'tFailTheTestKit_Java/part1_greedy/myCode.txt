@@ -1,8 +1,8 @@
-import java.util.*;
+//import java.util.*;
 class Solution {
     public int solution(int n, int[] stations, int w) {
         int answer = 0;
-        List<Integer> list = new ArrayList<>();
+        //List<Integer> list = new ArrayList<>();
 
         int standard = 1;
         double scope = w * 2 + 1;
