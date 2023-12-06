@@ -1,0 +1,136 @@
+// 가장 큰 수가 되는 조합은 숫자가 아님 -> 글자(문자) 순서로 큰수 ==========
+// 1. 숫자 -> 문자
+// 2. 내림차순 정렬
+// 3. 조합
+// ============================================================
+// 첫번째 방법: 시간초과 발생 =======================================
+// ============================================================
+import java.util.*;
+class Solution {
+    public String solution(int[] numbers) {
+        // 문제 풀기 위한 전략
+        // 숫자 -> 문자 -> 내림차순 정렬 -> 조합
+        
+        // 1. 숫자를 문자로 바꾸기
+        String[] stringNums = new String[numbers.length];
+        for (int i = 0; i < numbers.length; i++) {
+            stringNums[i] = String.valueOf(numbers[i]);
+        }
+        
+        // 2. 내림차순 정렬, 버블 sort
+        for (int i = 0; i < stringNums.length - 1; i++) {
+            for (int j = i + 1; j < stringNums.length; j++) {
+                String s1 = stringNums[i];
+                String s2 = stringNums[j];
+                
+                if ((s1+s2).compareTo(s2+s1) < 0) {
+                    stringNums[i] = s2;
+                    stringNums[j] = s1;
+                }
+            }
+        }
+        
+        // 3. 조합
+        String answer = "";
+        for (String stringNum : stringNums) {
+            answer += String.valueOf(stringNum);
+        }
+        
+        if (answer.charAt(0) == '0') return "0";
+        return answer;
+    }
+}
+// ============================================================
+// 결론: 2번 버블 sort에서 오래걸린것으로 예상됨 =======================
+// 자바에서 제공되는 Arrays.sort() 함수를 사용하자=====================
+// ============================================================
+import java.util.*;
+class Solution {
+    public String solution(int[] numbers) {
+        // 문제 풀기 위한 전략
+        // 숫자 -> 문자 -> 내림차순 정렬 -> 조합
+        
+        // 1. 숫자를 문자로 바꾸기
+        String[] stringNums = new String[numbers.length];
+        for (int i = 0; i < numbers.length; i++) {
+            stringNums[i] = String.valueOf(numbers[i]);
+        }
+        
+        // 2. 내림차순 정렬
+        Arrays.sort(stringNums, new Comparator<String>() {
+            public int compare(String s1, String s2) {
+                return (s2 + s1).compareTo(s1 + s2);        // 내림차순
+                //return (s1 + s2).compareTo(s2 + s1);      // 오름차순
+            }
+        });
+        
+        // 3. 조합
+        String answer = "";
+        for (String stringNum : stringNums) {
+            answer += String.valueOf(stringNum);
+        }
+        
+        if (answer.charAt(0) == '0') return "0";
+        return answer;
+    }
+}
+// ============================================================
+// ============================================================
+// ============================================================
+// ============================================================
+import java.util.*;
+class Solution {
+    public String solution(int[] numbers) {
+        // 문제 풀기 위한 전략
+        // 숫자 -> 문자 -> 내림차순 정렬 -> 조합
+        
+        // 1. 숫자를 문자로 바꾸기
+        String[] stringNums = new String[numbers.length];
+        for (int i = 0; i < numbers.length; i++) {
+            stringNums[i] = String.valueOf(numbers[i]);
+        }
+        
+        // 2. 내림차순 정렬, 람다를 이용해서 간결하게
+        Arrays.sort(stringNums, (s1, s2) -> (s2 + s1).compareTo(s1 + s2));
+        
+        // 3. 조합
+        String answer = "";
+        for (String stringNum : stringNums) {
+            answer += String.valueOf(stringNum);
+        }
+        
+        //if (answer.charAt(0) == '0') return "0";
+        if (answer.startsWith("0")) return "0";
+        return answer;
+    }
+}
+// ============================================================
+// ============================================================
+// ============================================================
+// ============================================================
+import java.util.*;
+import java.util.stream.*;
+class Solution {
+    public String solution(int[] numbers) {
+        // 문제 풀기 위한 전략
+        // 숫자 -> 문자 -> 내림차순 정렬 -> 조합
+        
+        // 1. 숫자를 문자로 바꾸기
+        // 2. 내림차순 정렬
+        // 3. 조합
+        // -> 스트림을 이용해서 간결하게
+        String answer = IntStream
+            .of(numbers)
+            .mapToObj(String::valueOf)      // 메소드 레퍼런스를 사용해서 축약
+            .sorted((s1, s2) -> (s2 + s1).compareTo(s1 + s2))
+            .collect(Collectors.joining());
+        
+        if (answer.startsWith("0")) return "0";
+        return answer;
+    }
+}
+// ============================================================
+// ============================================================
+// ============================================================
+// ============================================================
+// 명심하자!! Java에서 제공하는 기본 라이브러리를 숙지하여 최대한 활용하기!!
