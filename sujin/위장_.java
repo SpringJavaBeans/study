@@ -1,6 +1,6 @@
 import java.util.*;
 
-class 위장 {
+class 위장_ {
 
     public static int solution(String[][] clothes) {
         int answer = 0;
