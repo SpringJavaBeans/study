@@ -1,6 +1,4 @@
-package org.exercise.together;
-
-class test1 {
+class 기지국설치 {
 
     public static int solution(int n, int[] stations, int w) {
         int answer = 0;
