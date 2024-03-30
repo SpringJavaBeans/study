@@ -1,22 +1,13 @@
-package project;
-
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
-public class Main {
-    
-    public static void main(String[] args) {
-        int[] numbers = {6, 10, 2};
-        solution(numbers);
-    }
-    
+class 가장큰수 {
 
     public static String solution(int[] numbers) {
-       // 정수 배열을 리스트로 변환
+        // 정수 배열을 리스트로 변환
         List<String> numbersList = Arrays.stream(numbers)
-                                         .mapToObj(String::valueOf)
-                                         .collect(Collectors.toList());
+                .mapToObj(String::valueOf)
+                .collect(Collectors.toList());
 
         // 두 문자열을 서로 다른 순서로 연결했을 때 더 큰 숫자를 앞으로 정렬
         numbersList.sort((a, b) -> (b + a).compareTo(a + b));
@@ -32,7 +23,13 @@ public class Main {
             sb.append(numStr);
         }
 
-        System.out.println(sb.toString()); 
+        System.out.println(sb.toString());
         return sb.toString();
     }
+
+    public static void main(String[] args) {
+        int[] numbers = {6, 10, 2};
+        solution(numbers);
+    }
 }
+
