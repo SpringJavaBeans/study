@@ -44,7 +44,7 @@ public class 벽부시기 {
         q.add(new Position(0,0,0,false));
         visited[0][0][0] = true;
 
-        int[][] direction = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}}; // 좌, 우, 위, 아래
+        int[][] direction = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}}; //  좌, 우, 위, 아래
 
         while (!q.isEmpty()) {
             Position current = q.poll();
